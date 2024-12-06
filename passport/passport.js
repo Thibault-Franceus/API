@@ -1,5 +1,6 @@
 const passport = require('passport');
 const User = require('../models/User');
+const config = require('config');
 
 passport.use(User.createStrategy());
 
@@ -12,7 +13,7 @@ const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: 'SECRET_KEY'
+    secretOrKey: config.get('jwt.secret')
   };
   
   passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {

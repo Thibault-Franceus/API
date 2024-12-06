@@ -9,11 +9,13 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const ordersRouter = require('./routes/orders');
 const passport = require('./passport/passport');
+const config = require('config');
 
 const apiTodosRouter = require('./routes/api/v1/todos');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/TodoDB');
+mongoose.connect(config.get('Database.conn'));
+
 
 const app = express();
 

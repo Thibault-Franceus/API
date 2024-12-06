@@ -2,6 +2,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 require('../passport/passport');
+const config = require('config');
 
 const signup = async (req, res, next) => {
   let username = req.body.username;
@@ -15,7 +16,7 @@ const signup = async (req, res, next) => {
     let token = jwt.sign({
       uid: result._id,
       username: result.username
-    }, "SECRET_KEY")
+    }, config.get('jwt.secret'));
 
     res.status(200).json({
       "status": "Signup successful",
