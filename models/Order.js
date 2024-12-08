@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { create } = require('./User');
 const Schema = mongoose.Schema;
 
 // Defining the schema for the customization data
@@ -35,6 +36,12 @@ const Order = new Schema({
     type: String,
     required: true,
     default: 'pending'
+  },
+
+  created_at: {
+    type: Date,
+    required: true,
+    default: Date.now
   }
 });
 
