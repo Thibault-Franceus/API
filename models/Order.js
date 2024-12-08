@@ -41,15 +41,11 @@ const Order = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  },
+  }
 
   // Add the user reference
 
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  }
+  
 });
 
 // Export the model
