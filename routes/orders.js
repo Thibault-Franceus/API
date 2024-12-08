@@ -5,10 +5,6 @@ const passport = require('passport');
 
 router.get('/', ordersController.getOrders);
 router.post('/', ordersController.createOrder);
-router.post('/', passport.authenticate('jwt', {session:false}), ordersController.createOrder);
-router.get('/:id', passport.authenticate('jwt', {session:false}), ordersController.getOrder);
-router.put('/:id', passport.authenticate('jwt', {session:false}), ordersController.updateOrder);
-router.delete('/:id', passport.authenticate('jwt', {session:false}), ordersController.deleteOrder);
 
 
 
