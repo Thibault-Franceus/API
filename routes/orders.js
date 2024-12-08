@@ -5,5 +5,6 @@ const passport = require('passport');
 
 router.get('/', ordersController.getOrders);
 router.post('/', ordersController.createOrder);
+router.delete('/:id', ordersController.deleteOrder);
 
 module.exports = router;
