@@ -1,9 +1,9 @@
 {
     "Database": {
-        "conn": "mongodb+srv://r1006946:KqzQvK25hDcLpLhY@cluster0.zvbex.mongodb.net/"
+        "conn": "DATABASE_CONN"
     },
     "jwt": {
-        "secret": "SECRET_KEY"
+        "secret": "JWT_SECRET"
     }
 }
 
