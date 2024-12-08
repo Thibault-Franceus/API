@@ -20,10 +20,10 @@ const getOrders = async (req, res, next) => {
 const createOrder = async (req, res, next) => {
   try {
     const userId = req.user._id;
-    
+
     const order = new Order({
       customizations: req.body.customizations,
-      user: user._id
+      user: userID
     });
     await order.save();
     res.status(200).json({
