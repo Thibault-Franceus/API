@@ -29,6 +29,12 @@ const Order = new Schema({
     outside_2: customizationSchema,
     outside_3: customizationSchema,
     sole_bottom: customizationSchema
+  },
+
+  status: {
+    type: String,
+    required: true,
+    default: 'pending'
   }
 });
 
