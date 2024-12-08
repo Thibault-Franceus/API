@@ -19,7 +19,6 @@ const getOrders = async (req, res, next) => {
 
 const createOrder = async (req, res, next) => {
   try {
-
     const order = new Order({
       customizations: req.body.customizations
     });
