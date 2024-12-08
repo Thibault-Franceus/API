@@ -8,6 +8,7 @@ const customizationSchema = new Schema({
     type: String,
     required: true
   },
+  
   texture: {
     type: String,
     required: true
