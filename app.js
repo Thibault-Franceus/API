@@ -15,7 +15,7 @@ const config = require('config');
 const apiTodosRouter = require('./routes/api/v1/todos');
 
 const mongoose = require('mongoose');
-mongoose.connect(config.get('Database.conn'));
+mongoose.connect(process.env.DATABASE_CONN);
 
 
 const app = express();
