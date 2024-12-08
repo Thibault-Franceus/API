@@ -38,9 +38,9 @@ const Order = new Schema({
     default: 'pending'
   },
 
-  created_at: {
+  // adding the date timestamp of the order
+  orderDate: {
     type: Date,
-    required: true,
     default: Date.now
   }
 });
