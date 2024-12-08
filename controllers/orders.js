@@ -42,23 +42,46 @@ const createOrder = async (req, res, next) => {
 
 const updateOrder = async (req, res, next) => {
   try {
+    // Validate the status in the request body
+    const validStatuses = ['pending', 'shipped', 'canceled'];
+    const { status } = req.body;
+
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({
+        status: 'failed',
+        message: 'Invalid status value. Valid statuses are: pending, shipped, canceled.',
+      });
+    }
+
+    // Find the order by ID
     const order = await Order.findById(req.params.id);
-    order.status = 'shipped';
+    if (!order) {
+      return res.status(404).json({
+        status: 'failed',
+        message: 'Order not found.',
+      });
+    }
+
+    // Update the order status
+    order.status = status;
     await order.save();
+
+    // Respond with the updated order
     res.status(200).json({
       status: 'success',
       data: {
-        order
-      }
+        order,
+      },
     });
   } catch (err) {
     console.error('Failed to update order:', err); // Log the error details
     res.status(500).json({
       status: 'failed',
-      message: err.message
+      message: err.message,
     });
   }
 };
+
 
 const deleteOrder = async (req, res, next) => {
   try {
