@@ -40,12 +40,13 @@ const createOrder = async (req, res, next) => {
 
 // changin the order status from pending to shipped 
 
-const updateOrder = async (req, res, next) => {
+const updateOrder = async (req, res) => {
   try {
-    // Validate the status in the request body
+    // Validate the new status in the request body
     const validStatuses = ['pending', 'shipped', 'canceled'];
     const { status } = req.body;
 
+    // Ensure the status is one of the valid statuses
     if (!validStatuses.includes(status)) {
       return res.status(400).json({
         status: 'failed',
@@ -55,6 +56,8 @@ const updateOrder = async (req, res, next) => {
 
     // Find the order by ID
     const order = await Order.findById(req.params.id);
+
+    // Check if the order exists
     if (!order) {
       return res.status(404).json({
         status: 'failed',
@@ -62,25 +65,24 @@ const updateOrder = async (req, res, next) => {
       });
     }
 
-    // Update the order status
+    // Update the order's status
     order.status = status;
     await order.save();
 
-    // Respond with the updated order
+    // Send the updated order back to the client
     res.status(200).json({
       status: 'success',
-      data: {
-        order,
-      },
+      data: { order },
     });
   } catch (err) {
-    console.error('Failed to update order:', err); // Log the error details
+    console.error('Failed to update order:', err);
     res.status(500).json({
       status: 'failed',
       message: err.message,
     });
   }
 };
+
 
 
 const deleteOrder = async (req, res, next) => {
